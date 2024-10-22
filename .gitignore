@@ -1,5 +1,5 @@
 # Ignorar la carpeta donde guardas imágenes o figuras
-/figure/
+/figures/
 
 # Ignorar el entorno virtual de Python
 /venv/
