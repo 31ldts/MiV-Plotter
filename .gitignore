@@ -1,0 +1,38 @@
+# Ignorar la carpeta donde guardas imágenes o figuras
+/figure/
+
+# Ignorar el entorno virtual de Python
+/venv/
+
+# Ignorar los archivos compilados de Python (__pycache__)
+__pycache__/
+*.py[cod]
+
+# Ignorar archivos temporales
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*.~*
+
+# Ignorar binarios o archivos compilados
+*.out
+*.exe
+*.o
+*.so
+
+# Ignorar carpetas de salida o compilación
+/build/
+/dist/
+
+# Ignorar la configuración local de VSCode
+.vscode/
+
+# Ignorar bases de datos temporales o archivos SQLite
+*.db
+*.sqlite3
+
+# Ignorar archivos de configuración de sistema
+.DS_Store
+Thumbs.db
