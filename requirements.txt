@@ -1,0 +1,6 @@
+matplotlib==3.7.2             # Visualización de gráficos (pie charts, etc.)
+seaborn==0.12.2               # Visualización avanzada basada en Matplotlib
+pandas==2.1.1                 # Manejo y análisis de datos
+plotly==5.17.0                # Visualización interactiva de datos
+csv                           # Lectura y escritura de archivos CSV
+typing-extensions==4.8.0      # Soporte extendido para anotaciones de tipo
