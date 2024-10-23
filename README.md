@@ -41,7 +41,7 @@ This project aims to analyze the opinion of adult canary residents about the imp
 │   └── data_loader.py 	    # Data loading from csv files
 ├── data/             	    # Folder containing data files
 ├── MiV-Plotter.ipynb  	    # Notebook
-├── P1MiV2024.pdf  	        # Exercise exspecification
+├── P1MiV2024.pdf  	        # Exercise specification
 ├── requirements.txt  	    # List of dependencies needed for the project
 └── README.md         	    # Documentation file (this file)
 ```
@@ -50,7 +50,7 @@ This project aims to analyze the opinion of adult canary residents about the imp
 
 The following classes are used to represent and manage entities within the project, including `Territory` and `AgeGender`, both inheriting common functionality from the base `Entity` class.
 
-#### 'Entity'
+#### ´Entity´
 - **Description**: `Entity` is a base class that provides shared functionality between `Territory` and `AgeGender`. It manages the purposes related to population and percentage data.
 - **Attributes**:
   - `purposes`: A dictionary that holds population and percentage values for various purposes.
