@@ -1,125 +1,74 @@
-## **README.md**
+# Analysis of the Opinion on the Tourist Tax in the Canary Islands
 
-# **Análisis de la Opinión sobre la Tasa Turística en Canarias**  
-Este proyecto tiene como objetivo analizar la opinión de los residentes canarios mayores de 18 años sobre la implementación de una tasa turística. El estudio utiliza datos públicos para entender cómo la percepción sobre este impuesto varía según edad, sexo, territorios y finalidades específicas para las que debería destinarse la recaudación.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/31ldts/MiV-Plotter/blob/main/MiV-Plotter.ipynb)
 
----
-
-## **Estructura del Proyecto**
-
-### **Archivos principales**
-- **`src/`**: Contiene los módulos con el código fuente del proyecto.  
-    - `main.py`: Punto de entrada del programa.  
-    - `data_loader.py`: Funciones para la carga de datos desde archivos CSV.  
-    - `models.py`: Contiene las clases `Entity`, `Territory` y `AgeGender` para estructurar los datos.  
-    - `visualizations.py`: Incluye funciones para generar gráficos (barras, pie charts, heatmaps, gráficos interactivos).  
-    - `constants.py`: Define las estructuras de datos, constantes, y parámetros estilísticos para las gráficas.  
-
-- **`data/`**: Carpeta que contiene los archivos CSV.  
-    - `territorios.csv`: Opinión por territorios.  
-    - `edad_sexo.csv`: Opinión por grupos de edad y sexo.  
-
-- **`figures/`**: Carpeta donde se guardan algunos ejemplo de gráficos.  
-
-- **`requirements.txt`**: Lista de dependencias necesarias para ejecutar el proyecto.  
+This project aims to analyze the opinion of adult canary residents about the implementation of a new tourist tax. The study uses public data in order to understand how perception about this tax varies depending on age, gender, territories and specific purposes.
 
 ---
 
-## **Instalación**
+## Table of Contents
+1. [Features](#features)
+2. [Project Structure](#project-structure)
 
-### **Requisitos**
-- Python 3.8 o superior  
-- pip (gestor de paquetes de Python)  
+---
 
-### **Instalar dependencias**
-Ejecuta el siguiente comando para instalar las librerías necesarias:  
+## Features
 
-```bash
-pip install -r requirements.txt
+- **Data Loading**: Load datasets using predefined entity classes.
+- **Territory Visualizations**:
+  - Plot percentage distributions of territories with `plot_territory_percentages`.
+  - Customize plots with options like disabling Y-axis scaling (`scale_y=False`).
+  - Visualize average percentages for different purposes in territories using `plot_average_purpose_percentages`.
+  - Display territory percentages as pie charts with `plot_piechart_percentages`.
+  - Generate heatmaps for territory data using `plot_heatmap_territories`.
+- **Interactive Age-Gender Visualizations**:
+  - Use `plot_interactive_age_gender` to create interactive plots of age and gender distributions.
+  - Add customization such as showing totals or filtering for specific ages.
+- **Interactive Map Visualizations**:
+  - `plot_interactive_map` allows users to explore territorial data interactively on a map.
+
+---
+
+## Project Structure
+
+```plaintext
+.
+├── src/                    # Contains code modules
+│   |── main.py             # Main entry point of the program
+│   |── constant.py       	# Constants and Structs definition
+│   |── models.py       	# Classes definition
+│   |── visualization.py 	# Plots building
+│   └── data_loader.py 	    # Data loading from csv files
+├── data/             	    # Folder containing data files
+├── MiV-Plotter.ipynb  	    # Notebook
+├── P1MiV2024.pdf  	        # Exercise exspecification
+├── requirements.txt  	    # List of dependencies needed for the project
+└── README.md         	    # Documentation file (this file)
 ```
 
----
+### Class Definitions
 
-## **Descripción de los Datos**
-El proyecto utiliza dos archivos CSV con la misma estructura básica:  
+The following classes are used to represent and manage entities within the project, including `Territory` and `AgeGender`, both inheriting common functionality from the base `Entity` class.
 
-- **`territorios.csv`**: Muestra las opiniones según los territorios.  
-- **`edad_sexo.csv`**: Detalla las opiniones según grupos de edad y sexo.  
+#### 'Entity'
+- **Description**: `Entity` is a base class that provides shared functionality between `Territory` and `AgeGender`. It manages the purposes related to population and percentage data.
+- **Attributes**:
+  - `purposes`: A dictionary that holds population and percentage values for various purposes.
+- **Methods**:
+  - `update_purpose(purpose: str, population: int = None, percentage: float = None)`: Updates the population or percentage for a given purpose. 
 
-Ambos ficheros contienen información sobre las finalidades para las que debería destinarse la recaudación, el porcentaje de apoyo, y el número de personas a favor.
+#### `Territory`
+- **Description**: `Territory` represents a geographic region, extending the `Entity` class. It tracks the highest percentage recorded across all purposes for the territory.
+- **Attributes**:
+  - `name`: The name of the territory.
+  - `highest_percentage`: A class attribute that stores the highest percentage recorded across all purposes.
+- **Methods**:
+  - `update_purpose(purpose: str, population: int = None, percentage: float = None)`: Overrides the base class method to also update `highest_percentage` with the maximum percentage recorded (excluding specific categories).
 
----
-
-## **Uso**
-
-### **Ejecutar el Proyecto**
-Puedes ejecutar el proyecto con el siguiente comando:  
-
-```bash
-python src/main.py
-```
-
-### **Funciones Principales**
-1. **`read_csv()`**:  
-   Carga y procesa los datos de un archivo CSV en listas de objetos `Territory` o `AgeGroup` según el parámetro indicado.
-   
-2. **Visualizaciones**:  
-   El proyecto genera diferentes tipos de gráficos para interpretar los datos:
-   - **Gráficos de barras**: Comparaciones entre territorios y finalidades.  
-   - **Gráficos de pie**: Distribución de finalidades.  
-   - **Heatmaps**: Visualización de porcentajes en distintas categorías.  
-   - **Gráficos interactivos**: Explorar relaciones entre edad, sexo y territorio.  
-
----
-
-## **Ejemplo de Código**  
-
-```python
-from data_loader import read_csv
-from visualizations import plot_piechart_percentages
-
-# Cargar datos desde el archivo de territorios
-territories = read_csv('data/territorios.csv', tipo='territorio')
-
-# Generar un gráfico de pie con los porcentajes medios por finalidad
-plot_piechart_percentages(territories)
-```
-
----
-
-## **Librerías Utilizadas**
-- **`csv`**: Lectura y escritura de archivos CSV.  
-- **`matplotlib`**: Creación de gráficos como barras y pie charts.  
-- **`seaborn`**: Generación de heatmaps y gráficos avanzados.  
-- **`pandas`**: Manipulación y análisis de datos.  
-- **`plotly`**: Creación de gráficos interactivos.  
-- **`typing`**: Definición de tipos para una mejor organización del código.  
-
----
-
-## **Estructura de Clases**
-
-- **`Entity`**: Clase base compartida por `Territory` y `AgeGender`.  
-- **`Territory`**: Representa los datos agrupados por regiones y su finalidad asociada.  
-- **`AgeGender`**: Modela la información según los grupos de edad y sexo.  
-- **Estructuras**:  
-  - `PurposeStruct`: Contiene las finalidades de la tasa turística.  
-  - `GenderStruct`: Define los códigos y nombres de sexos.  
-  - `AgeStruct`: Almacena los grupos de edad con sus códigos.  
-
----
-
-## **Modificaciones y Personalización**
-
-### **Modificar el Tamaño de los Gráficos**  
-El tamaño de los gráficos se puede ajustar cambiando el parámetro `FIG_SIZE` en el archivo **`constants.py`**.
-
-```python
-FIG_SIZE = (12, 8)  # Ancho y alto en pulgadas
-```
-
-Para gráficos de pie, el tamaño del círculo puede ajustarse directamente en el método `ax.pie()`:
-
-```python
-fig, ax = plt.subplots(figsize=(8, 8))  # Modificar el tamaño aquí
-```
+#### `AgeGender`
+- **Description**: `AgeGender` represents a demographic group categorized by age and gender, inheriting from `Entity`.
+- **Attributes**:
+  - `age`: The age group (as a string).
+  - `gender`: The gender associated with the age group.
+- **Methods**:
+  - Inherits all methods from `Entity` without further modification.
