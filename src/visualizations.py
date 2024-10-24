@@ -78,8 +78,6 @@ def _plot_bar_chart(
     
     plt.title(title)    # Set the chart title
     
-    # Label x and y axes
-    plt.xlabel("Categorías")
     plt.ylabel("Porcentaje (%)")
     
     # Set a y-axis limit if provided
