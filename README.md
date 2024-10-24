@@ -2,7 +2,7 @@
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/31ldts/MiV-Plotter/blob/main/MiV-Plotter.ipynb)
 
-This project aims to analyze the opinion of adult canary residents about the implementation of a new tourist tax. The study uses public data in order to understand how perception about this tax varies depending on age, gender, territories and specific purposes.
+This project is a university practice aimed at analyzing and visualizing data related to the opinion of adult Canary residents on the implementation of a new tourist tax. The objective is to understand how perceptions vary by age, gender, territories, and specific purposes. All project specifications can be found in the file **P1MiV2024.pdf**.
 
 ---
 
