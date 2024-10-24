@@ -12,8 +12,21 @@ def _generate_legend(
         names: List[str] = None, 
         abbreviations: List[str] = None, 
         include_purposes: bool = False
-        ) -> str:
-    """Generates a legend."""
+    ) -> str:
+
+    """
+    Create a legend.
+
+    Args:
+        names (List[str]): List with names.
+        abbreviations (List[str]): List with names' abbreviations.
+        include_purposes (bool): If True, include purposes names and abbreviations;
+                                 if False, not.
+
+    Returns:
+        str: Structured legend.
+    """
+
     sections = ["Leyenda:"]
 
     # Add territories names and labels if provided
@@ -39,8 +52,23 @@ def _plot_bar_chart(
         legend_pos_x: float, 
         color: str, 
         y_limit: Union[float, None] = None
-        ) -> None:
-    """Creatas a bar chart."""
+    ) -> None:
+
+    """
+    Create a bar chart.
+
+    Args:
+        title (str): Plot title
+        categories (List[str]): Plot categories
+        values (List[float]): Plot data
+        legend (str): Plot legend
+        legend_pos_x (float): Legend x-axis coordenade.
+        y_limit (float, None): Y-axis value.
+        color (str): color in hexadecimal format.
+
+    Returns:
+        None
+    """
     
     plt.figure(figsize=FIG_SIZE)    # Create a figura with specific dimensions
     
@@ -71,8 +99,20 @@ def plot_territory_percentages(
         scale_y: bool = True, 
         color: str = PRIMARY_COLOR
         ) -> None:
-    """Plots the percentages per purpose for each territory."""
     
+    """
+    Plots the percentages per purpose for each territory.
+
+    Args:
+        territories (List[Territory]): List with Territory objects.
+        scale_y (bool): If True, y-axis has the same value for all plots;
+                        if False, y-axis varies depending on plot data.
+        color (str): color in hexadecimal format.
+
+    Returns:
+        None
+    """
+
     # Filter out excluded purposes
     purposes = [f for f in PurposeStruct.PURPOSES if f != EXCLUDED_CATEGORY]
     
@@ -99,8 +139,17 @@ def plot_average_purpose_percentages(
         territories: List[Territory], 
         color: str = PRIMARY_COLOR
     ) -> None:
-    """Plots the average percentage for each purpose across all territories."""
     
+    """
+    Plot the average percentage for each purpose across all territories.
+
+    Args:
+        territories (List[Territory]): List with Territory objects.
+        color (str): color in hexadecimal format.
+
+    Returns:
+        None
+    """
     # Filter out excluded purposes
     percentages = [f for f in PurposeStruct.PURPOSES if f != EXCLUDED_CATEGORY]
     
@@ -118,8 +167,19 @@ def plot_average_purpose_percentages(
         legend, 0.55, color, max(average_percentages.values()) + 5
     )
 
-def plot_piechart_percentages(territories: List[Territory], pie_colors: List[str] = PIE_COLORS):
-    """Generates a pie chart showing the distribution of average percentages by purpose."""
+def plot_piechart_percentages(
+        territories: List[Territory], 
+        pie_colors: List[str] = PIE_COLORS
+    ) -> None:
+    """
+    Generate a pie chart showing the distribution of average percentages by purpose.
+    
+    Args:
+        territories (List[Territory]): List with Territory objects.
+
+    Returns:
+        None
+    """
 
     # Initialize dictionaries to store the sum of percentages and the count per purpose
     average_percentages = {name: 0.0 for name in PurposeStruct.PURPOSES if name != EXCLUDED_CATEGORY}
@@ -171,8 +231,16 @@ def plot_piechart_percentages(territories: List[Territory], pie_colors: List[str
 
     plt.show()
 
-def plot_heatmap_territories(territories: List[Territory]):
-    """Generates a heatmap that visualizes percentages by territory and purpose."""
+def plot_heatmap_territories(territories: List[Territory]) -> None:
+    """
+    Generate a heatmap that visualizes percentages by territory and purpose.
+    
+    Args:
+        territories (List[Territory]): List with Territory objects.
+
+    Returns:
+        None
+    """
 
     # Build a data dictionary: keys are territory abbreviations, values are lists of percentages by purpose
     data = {
@@ -210,15 +278,23 @@ def plot_heatmap_territories(territories: List[Territory]):
 
     plt.show()
 
-def plot_interactive_age_gender(groups: List[AgeGender], show_total: bool = False, show_only_ages: bool = False):
+def plot_interactive_age_gender(
+        groups: List[AgeGender], 
+        show_total: bool = False, 
+        show_only_ages: bool = False
+    ) -> None:
     """
-    Generates an interactive bar chart of percentages by age and gender with patterns.
+    Generate an interactive bar chart of percentages by age and gender.
 
     Args:
         groups (List[AgeGroup]): List of age and gender groups.
-        show_total (bool): If True, shows only the total; if False, shows Male and Female.
+        show_total (bool): If True, shows only the total; 
+                           if False, shows Male and Female.
         show_only_ages (bool): If True, shows only age groups without the total;
                                if False, includes the total.
+                            
+    Returns:
+        None
     """
     data = []
 
@@ -300,8 +376,16 @@ def plot_interactive_age_gender(groups: List[AgeGender], show_total: bool = Fals
     
     fig.show()
 
-def plot_interactive_map(territories: List[Territory]):
-    """Generates an interactive map of the Canary Islands excluding the 'Canarias' territory."""
+def plot_interactive_map(territories: List[Territory]) -> None:
+    """
+    Generate an interactive map of the Canary Islands excluding the 'Canarias' territory.
+    
+    Args:
+        territories (List[Territory]): List with Territory objects.
+
+    Returns:
+        None
+    """
 
     # Coordinates of the Canary Islands
     coordinates = {

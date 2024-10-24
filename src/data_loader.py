@@ -3,10 +3,21 @@ from typing import List, Type, Union
 from models import Territory, AgeGender
 from constants import *
 
-def read_csv(path: str, entity_class: Type[Union[Territory, AgeGender]]) -> List[Union[Territory, AgeGender]]:
+def read_csv(
+        path: str, 
+        entity_class: Type[Union[Territory, AgeGender]]
+    ) -> List[Union[Territory, AgeGender]]:
+
     """
     Reads a CSV file and creates a list of objects of the specified class: 
     either Territory or AgeGender.
+
+    Args:
+        path (str): File path.
+        entity_class (Type[Union[Territory, AgeGender]]): Type selector.
+
+    Returns:
+        List[Union[Territory, AgeGender]]: List with either Territory or AgeGender objects.
     """
 
     # Initialize an appropriate collection: dict for Territory, list for AgeGender
